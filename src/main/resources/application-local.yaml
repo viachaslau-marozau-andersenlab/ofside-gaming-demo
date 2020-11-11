@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    password: ''
+    url: jdbc:hsqldb:mem:testdb;
+    username: sa
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+      generate-ddl: true
+      show-sql: false
