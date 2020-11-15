@@ -30,9 +30,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.authorizeRequests()
-                .antMatchers("/v1/metrics").authenticated()
-                .antMatchers("/v1/metrics").authenticated()
-                .antMatchers("/v1/metrics").authenticated()
+                .antMatchers("/v1/metrics/*").authenticated()
+                .antMatchers("/v1/users/*").authenticated()
                 .anyRequest().permitAll();
 
         httpSecurity.exceptionHandling().authenticationEntryPoint(new JwtTokenAuthenticationEntryPoint(handlerExceptionResolver));

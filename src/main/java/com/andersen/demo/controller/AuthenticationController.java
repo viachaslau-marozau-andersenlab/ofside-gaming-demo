@@ -25,8 +25,8 @@ public class AuthenticationController {
     @ApiOperation(value = "Generate token")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successfully generated token"),
-            @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
-            @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+            @ApiResponse(code = 403, message = "Incorrect password"),
+            @ApiResponse(code = 404, message = "User with this id not found")
     })
     public String getToken(
             @ApiParam(value = "Login information") @Valid @RequestBody LoginDto loginDto

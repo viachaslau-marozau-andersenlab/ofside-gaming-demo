@@ -26,7 +26,7 @@ public class User implements UserDetails {
     private Long id;
 
     @NotNull
-    @Column(name = "login")
+    @Column(name = "login", unique = true)
     private String login;
 
     @NotNull

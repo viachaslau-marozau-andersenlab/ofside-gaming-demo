@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +34,6 @@ public class MetricsServiceImpl implements MetricsService {
     public Metric addMetric(Metric metric) {
         log.info("Start addMetric() with user id: {}, metricValue: {},  metricType: {}", metric.getUser().getId(), metric.getMetricValue(), metric.getMetricType());
         verifyMetric(metric);
-        metric.setCreatedDate(new Timestamp(System.currentTimeMillis()));
         return repository.save(metric);
     }
 
@@ -43,13 +41,15 @@ public class MetricsServiceImpl implements MetricsService {
         Optional<Metric> lastExistingMetric = repository.findFirstByUserIdAndMetricTypeOrderByCreatedDateDesc(metricToAdd.getUser().getId(), metricToAdd.getMetricType());
         if (lastExistingMetric.isPresent()
                 && metricToAdd.getMetricValue() < lastExistingMetric.get().getMetricValue()) {
-            log.error("Current metric value  must be more that previous. Current value {}, previous value {}, user id: {},  metricType: {}",
+            log.error("Current metric value  must be more that previous one. Current value {}, previous value {}, user id: {},  metricType: {}",
                     metricToAdd.getMetricValue(),
                     lastExistingMetric.get().getMetricValue(),
                     metricToAdd.getUser().getId(),
                     metricToAdd.getMetricType());
 
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Current metric value must be more that previous");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, String.format("Current metric value must be more that previous one. Current value %s, previous value %s",
+                    metricToAdd.getMetricValue(),
+                    lastExistingMetric.get().getMetricValue()));
         }
     }
 }

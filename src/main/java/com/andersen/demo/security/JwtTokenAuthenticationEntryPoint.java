@@ -8,7 +8,6 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.Serializable;
 
 @Component
@@ -18,7 +17,7 @@ public class JwtTokenAuthenticationEntryPoint implements AuthenticationEntryPoin
     private final transient HandlerExceptionResolver handlerExceptionResolver;
 
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) {
         handlerExceptionResolver.resolveException(request, response, null, e);
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
@@ -63,7 +64,7 @@ public class MetricsController {
     })
     @PreAuthorize("hasAuthority('ADMIN') or hasAuthority('USER')")
     public MetricDto addMetric(
-            @ApiParam(value = "Metric value to add") @RequestBody MetricDto metricDto
+            @ApiParam(value = "Metric value to add") @Valid @RequestBody MetricDto metricDto
     ) {
         Metric metric = metricsService.addMetric(metricMapper.fromDto(metricDto));
         return metricMapper.toDto(metric);

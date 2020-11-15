@@ -1,10 +1,11 @@
 package com.andersen.demo.model;
 
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "demo_metrics")
@@ -33,5 +34,6 @@ public class Metric {
     private User user;
 
     @Column(name = "created_date")
-    private Timestamp createdDate;
+    @CreationTimestamp
+    private LocalDateTime createdDate;
 }

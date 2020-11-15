@@ -18,7 +18,6 @@ import java.util.Optional;
 
 import static com.andersen.demo.model.MetricType.COLD_WATER;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -66,7 +65,6 @@ public class MetricsServiceImplTest {
 
         assertEquals(100D, result.getMetricValue());
         assertEquals(COLD_WATER, result.getMetricType());
-        assertNotNull(result.getCreatedDate());
     }
 
     @Test
@@ -102,7 +100,6 @@ public class MetricsServiceImplTest {
 
         assertEquals(100D, result.getMetricValue());
         assertEquals(COLD_WATER, result.getMetricType());
-        assertNotNull(result.getCreatedDate());
     }
 
     @Test
@@ -138,7 +135,6 @@ public class MetricsServiceImplTest {
 
         assertEquals(100D, result.getMetricValue());
         assertEquals(COLD_WATER, result.getMetricType());
-        assertNotNull(result.getCreatedDate());
     }
 
     @Test(expected = ResponseStatusException.class)

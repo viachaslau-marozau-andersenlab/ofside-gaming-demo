@@ -11,7 +11,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @ApiModel
 @Getter
@@ -38,5 +38,5 @@ public class MetricDto {
 
     @ApiModelProperty(hidden = true)
     @JsonProperty("createdDate")
-    private Timestamp createdDate;
+    private LocalDateTime createdDate;
 }
